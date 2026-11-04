@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#A78BFA">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="紀亮丞（Liang Cheng Chi）的個人網站：前端開發、數位行銷與教育領域的求職檔案與作品集。">
+  <title>紀亮丞 Liang Cheng Chi | 個人網站</title>
+  <script>
+    /* Apply the saved / system theme before first paint to avoid a flash. */
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = (saved === 'dark' || saved === 'light')
+          ? saved
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      } catch (e) {}
+    })();
+  </script>
+  <!-- Google Fonts: Inter (SF-like) + Noto Sans TC for Chinese -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* ---------- Liquid Glass palette ---------- */
+      --color-sky: #7DD3FC;
+      --color-violet: #A78BFA;
+      --color-pink: #F9A8D4;
+
+      /* Text (all >= 4.5:1 on every glass panel) */
+      --color-ink: #0F172A;
+      --color-ink-soft: #1E293B;
+      --color-ink-muted: #2A3648;
+
+      /* Glass surfaces */
+      --glass-bg: rgba(255, 255, 255, 0.18);
+      --glass-bg-hover: rgba(255, 255, 255, 0.28);
+      --glass-bg-soft: rgba(255, 255, 255, 0.12);
+      --glass-bg-strong: rgba(255, 255, 255, 0.24);
+      --glass-bg-fallback: rgba(255, 255, 255, 0.58);
+      --glass-border: rgba(255, 255, 255, 0.45);
+      --glass-border-strong: rgba(255, 255, 255, 0.65);
+      --glass-highlight: rgba(255, 255, 255, 0.6);
+      --glass-lowlight: rgba(255, 255, 255, 0.14);
+      --glass-filter: blur(24px) saturate(180%);
+      --glass-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 55%);
+
+      /* Soft translucent tints for chips / inner panels */
+      --tint-sky: rgba(125, 211, 252, 0.38);
+      --tint-violet: rgba(167, 139, 250, 0.38);
+      --tint-pink: rgba(249, 168, 212, 0.42);
+      --tint-neutral: rgba(255, 255, 255, 0.3);
+
+      /* Toast accents */
+      --toast-info-tint: rgba(125, 211, 252, 0.4);
+      --toast-info-icon: #075985;
+      --toast-success-tint: rgba(52, 211, 153, 0.34);
+      --toast-success-icon: #065F46;
+
+      /* Background */
+      --bg-base: #A5B4FC;
+      --bg-gradient:
+        radial-gradient(52% 46% at 16% 12%, var(--color-sky) 0%, transparent 68%),
+        radial-gradient(50% 48% at 86% 22%, var(--color-violet) 0%, transparent 70%),
+        radial-gradient(58% 54% at 50% 92%, var(--color-pink) 0%, transparent 72%),
+        linear-gradient(135deg, var(--color-sky) 0%, var(--color-violet) 52%, var(--color-pink) 100%);
+      --hairline: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%);
+      --sticker-fill: rgba(255, 255, 255, 0.3);
+      --sticker-stroke: rgba(255, 255, 255, 0.85);
+
+      /* Type */
+      --font-body: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      --font-heading: var(--font-body);
+
+      /* Geometry & rhythm */
+      --radius-card: 24px;
+      --radius-inner: 18px;
+      --radius-pill: 999px;
+      --nav-margin: 12px;
+      --nav-height: 56px;
+      --nav-clearance: calc(var(--nav-margin) + var(--nav-height) + 20px);
+      --space-page: 16px;
+      --space-card: 24px;
+      --gap-grid: 16px;
+    }
+
+    /* ---------- Dark mode: smoked glass over a deep vivid gradient ---------- */
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+
+      --color-ink: #F8FAFC;
+      --color-ink-soft: #E2E8F0;
+      --color-ink-muted: #CBD5E1;
+
+      --glass-bg: rgba(15, 23, 42, 0.5);
+      --glass-bg-hover: rgba(15, 23, 42, 0.62);
+      --glass-bg-soft: rgba(15, 23, 42, 0.34);
+      --glass-bg-strong: rgba(15, 23, 42, 0.58);
+      --glass-bg-fallback: rgba(15, 23, 42, 0.86);
+      --glass-border: rgba(255, 255, 255, 0.3);
+      --glass-border-strong: rgba(255, 255, 255, 0.5);
+      --glass-highlight: rgba(255, 255, 255, 0.34);
+      --glass-lowlight: rgba(255, 255, 255, 0.06);
+      --glass-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 55%);
+
+      --tint-sky: rgba(2, 132, 199, 0.38);
+      --tint-violet: rgba(124, 58, 237, 0.42);
+      --tint-pink: rgba(219, 39, 119, 0.38);
+      --tint-neutral: rgba(255, 255, 255, 0.1);
+
+      --toast-info-tint: rgba(2, 132, 199, 0.45);
+      --toast-info-icon: #E0F2FE;
+      --toast-success-tint: rgba(16, 185, 129, 0.38);
+      --toast-success-icon: #A7F3D0;
+
+      --bg-base: #1E1B4B;
+      --bg-gradient:
+        radial-gradient(52% 46% at 16% 12%, #0284C7 0%, transparent 68%),
+        radial-gradient(50% 48% at 86% 22%, #7C3AED 0%, transparent 70%),
+        radial-gradient(58% 54% at 50% 92%, #DB2777 0%, transparent 72%),
+        linear-gradient(135deg, #0284C7 0%, #7C3AED 52%, #DB2777 100%);
+      --hairline: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+      --sticker-fill: rgba(255, 255, 255, 0.12);
+      --sticker-stroke: rgba(255, 255, 255, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      position: relative;
+      min-height: 100vh;
+      background-color: var(--bg-base);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.65;
+      letter-spacing: -0.011em;
+      padding: var(--nav-clearance) var(--space-page) calc(var(--space-page) * 3);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Fixed, slowly drifting blurred gradient background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -18%;
+      z-index: -1;
+      background: var(--bg-gradient);
+      filter: blur(36px) saturate(120%);
+      transform: translate3d(0, 0, 0) scale(1.12);
+      animation: bg-drift 46s ease-in-out infinite;
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    @keyframes bg-drift {
+      0%   { transform: translate3d(-2%, -1.5%, 0) scale(1.12) rotate(0deg); }
+      33%  { transform: translate3d(2.5%, 1.5%, 0) scale(1.18) rotate(2.5deg); }
+      66%  { transform: translate3d(1%, 3%, 0) scale(1.14) rotate(-2deg); }
+      100% { transform: translate3d(-2%, -1.5%, 0) scale(1.12) rotate(0deg); }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Glass primitives ---------- */
+    .card,
+    .panel,
+    .nav-pill,
+    .btn {
+      background-color: var(--glass-bg);
+      background-image: var(--glass-sheen);
+      -webkit-backdrop-filter: var(--glass-filter);
+      backdrop-filter: var(--glass-filter);
+      border: 1px solid var(--glass-border);
+      box-shadow:
+        inset 0 1px 0 var(--glass-highlight),
+        inset 0 -1px 0 var(--glass-lowlight);
+    }
+
+    .card {
+      position: relative;
+      border-radius: var(--radius-card);
+      padding: var(--space-card);
+      margin-bottom: 20px;
+      scroll-margin-top: calc(var(--nav-clearance) + 8px);
+      transition: background-color 0.35s ease, border-color 0.35s ease;
+    }
+
+    .card:hover {
+      background-color: var(--glass-bg-strong);
+    }
+
+    .panel {
+      border-radius: var(--radius-inner);
+      padding: 16px;
+      margin-top: 12px;
+    }
+
+    .panel-tint {
+      background-color: var(--tint-sky);
+    }
+
+    /* ---------- Floating pill navigation ---------- */
+    .nav-pill {
+      position: fixed;
+      top: var(--nav-margin);
+      left: var(--nav-margin);
+      right: var(--nav-margin);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      height: var(--nav-height);
+      padding: 6px;
+      border-radius: var(--radius-pill);
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .nav-pill::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-pill a {
+      flex: 1 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 10px;
+      border-radius: var(--radius-pill);
+      color: var(--color-ink);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .nav-pill a:hover {
+      background-color: var(--glass-bg-hover);
+      transform: translateY(-1px);
+    }
+
+    .nav-pill a:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* ---------- Theme toggle (glass icon button) ---------- */
+    .theme-toggle {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-left: 2px;
+      padding: 0;
+      border-radius: var(--radius-pill);
+      background-color: var(--glass-bg);
+      background-image: var(--glass-sheen);
+      -webkit-backdrop-filter: var(--glass-filter);
+      backdrop-filter: var(--glass-filter);
+      border: 1px solid var(--glass-border);
+      box-shadow: inset 0 1px 0 var(--glass-highlight);
+      color: var(--color-ink);
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.06);
+      background-color: var(--glass-bg-hover);
+      border-color: var(--glass-border-strong);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.97);
+    }
+
+    .theme-toggle svg {
+      width: 19px;
+      height: 19px;
+      pointer-events: none;
+    }
+
+    .theme-toggle .icon-sun {
+      display: none;
+    }
+
+    :root[data-theme="dark"] .theme-toggle .icon-sun {
+      display: block;
+    }
+
+    :root[data-theme="dark"] .theme-toggle .icon-moon {
+      display: none;
+    }
+
+    /* ---------- Typography ---------- */
+    h1, h2, h3, .heading-font {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 11vw, 4.75rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      margin: 4px 0 0;
+      overflow-wrap: break-word;
+    }
+
+    .hero-title span {
+      display: block;
+      margin-top: 0.55rem;
+      font-size: 0.3em;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      line-height: 1.3;
+      color: var(--color-ink-soft);
+    }
+
+    .label-sm {
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: 14px;
+      border-radius: var(--radius-pill);
+      background-color: var(--glass-bg-strong);
+      border: 1px solid var(--glass-border);
+      color: var(--color-ink);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .section-title {
+      font-size: clamp(1.375rem, 5vw, 1.75rem);
+      margin-bottom: 12px;
+    }
+
+    .item-title {
+      font-size: 1.0625rem;
+      margin-bottom: 6px;
+    }
+
+    p {
+      overflow-wrap: break-word;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    /* ---------- Tags / chips ---------- */
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background-color: var(--tint-neutral);
+      border: 1px solid var(--glass-border);
+      box-shadow: inset 0 1px 0 var(--glass-highlight);
+      -webkit-backdrop-filter: var(--glass-filter);
+      backdrop-filter: var(--glass-filter);
+      color: var(--color-ink);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .tag-accent {
+      background-color: var(--tint-violet);
+    }
+
+    .tag-yellow {
+      background-color: var(--tint-sky);
+    }
+
+    .tag-pink {
+      background-color: var(--tint-pink);
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      min-width: 160px;
+      padding: 0 28px;
+      margin-top: 16px;
+      border-radius: var(--radius-pill);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      transition:
+        transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+        background-color 0.28s ease,
+        border-color 0.28s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.045);
+      background-color: var(--glass-bg-hover);
+      border-color: var(--glass-border-strong);
+    }
+
+    .btn:active {
+      transform: scale(0.99);
+    }
+
+    /* ---------- Status badge ---------- */
+    .badge-pending {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      background-color: var(--glass-bg-strong);
+      border: 1px solid var(--glass-border);
+      box-shadow: inset 0 1px 0 var(--glass-highlight);
+      -webkit-backdrop-filter: var(--glass-filter);
+      backdrop-filter: var(--glass-filter);
+      color: var(--color-ink);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    /* ---------- Avatar placeholder ---------- */
+    .avatar-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 220px;
+      margin-top: 12px;
+      border-radius: var(--radius-inner);
+      background-color: var(--glass-bg-soft);
+      border: 1px dashed var(--glass-border-strong);
+      color: var(--color-ink);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .avatar-box svg {
+      stroke: var(--color-ink);
+    }
+
+    /* ---------- Decorative stickers ---------- */
+    .sticker {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    .sticker polygon {
+      fill: var(--sticker-fill);
+      stroke: var(--sticker-stroke);
+      stroke-width: 2;
+    }
+
+    .sticker path {
+      stroke: var(--sticker-stroke);
+      stroke-width: 4;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sticker-star {
+      top: -14px;
+      right: 4px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .sticker-arrow {
+      bottom: -12px;
+      right: 12px;
+      width: 44px;
+      height: 44px;
+      display: none;
+    }
+
+    /* ---------- Layout ---------- */
+    .divider {
+      height: 1px;
+      margin: 24px 0;
+      border: 0;
+      background: var(--hairline);
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--gap-grid);
+      margin-bottom: 20px;
+    }
+
+    /* ---------- Hero bits ---------- */
+    .hero-quote {
+      max-width: 720px;
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: var(--radius-inner);
+      background-color: var(--glass-bg-soft);
+      border: 1px solid var(--glass-border);
+      box-shadow: inset 0 1px 0 var(--glass-highlight);
+      font-size: clamp(1.0625rem, 4.2vw, 1.25rem);
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .contact-list p {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      min-height: 32px;
+    }
+
+    .contact-list p + p {
+      margin-top: 6px;
+    }
+
+    /* ---------- Toasts ---------- */
+    .toast-region {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: max(12px, env(safe-area-inset-bottom));
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      width: 100%;
+      max-width: 420px;
+      padding: 14px;
+      border-radius: 20px;
+      background-color: var(--glass-bg-strong);
+      background-image: var(--glass-sheen);
+      -webkit-backdrop-filter: var(--glass-filter);
+      backdrop-filter: var(--glass-filter);
+      border: 1px solid var(--glass-border);
+      box-shadow:
+        inset 0 1px 0 var(--glass-highlight),
+        inset 0 -1px 0 var(--glass-lowlight);
+      color: var(--color-ink);
+      pointer-events: auto;
+      animation: toast-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .toast[hidden] {
+      display: none;
+    }
+
+    .toast[data-variant="info"] {
+      --toast-tint: var(--toast-info-tint);
+      --toast-icon: var(--toast-info-icon);
+    }
+
+    .toast[data-variant="success"] {
+      --toast-tint: var(--toast-success-tint);
+      --toast-icon: var(--toast-success-icon);
+    }
+
+    .toast-icon {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-pill);
+      background-color: var(--toast-tint);
+      border: 1px solid var(--glass-border);
+      box-shadow: inset 0 1px 0 var(--glass-highlight);
+      color: var(--toast-icon);
+    }
+
+    .toast-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .toast-body {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .toast-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .toast-message {
+      margin-top: 2px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--color-ink-muted);
+    }
+
+    .toast-message:empty {
+      display: none;
+    }
+
+    .toast-close {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin: -10px -6px -10px 0;
+      padding: 0;
+      border: 0;
+      border-radius: var(--radius-pill);
+      background: transparent;
+      color: var(--color-ink);
+      cursor: pointer;
+      transition: background-color 0.25s ease;
+    }
+
+    .toast-close:hover {
+      background-color: var(--glass-bg-hover);
+    }
+
+    .toast-close svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @keyframes toast-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .toast-region {
+        left: auto;
+        right: 16px;
+        bottom: 16px;
+        width: 380px;
+        align-items: flex-end;
+      }
+
+      .toast {
+        max-width: 380px;
+      }
+    }
+
+    /* ---------- Focus visibility ---------- */
+    :focus-visible {
+      outline: 2px solid var(--color-ink);
+      outline-offset: 3px;
+    }
+
+    .nav-pill a:focus-visible {
+      outline-offset: -2px;
+    }
+
+    /* ---------- Fallback when backdrop-filter is unsupported ---------- */
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .card,
+      .panel,
+      .nav-pill,
+      .btn,
+      .tag,
+      .badge-pending {
+        background-color: var(--glass-bg-fallback);
+      }
+    }
+
+    /* ---------- Tablet / desktop ---------- */
+    @media (min-width: 600px) {
+      :root {
+        --space-page: 24px;
+        --space-card: 28px;
+      }
+
+      .nav-pill {
+        left: 50%;
+        right: auto;
+        width: auto;
+        max-width: calc(100% - 24px);
+        transform: translateX(-50%);
+      }
+
+      .nav-pill a {
+        flex: 0 0 auto;
+        padding: 0 18px;
+      }
+
+      .sticker-star {
+        width: 48px;
+        height: 48px;
+        right: -8px;
+        top: -18px;
+      }
+
+      .sticker-arrow {
+        display: block;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero-quote {
+        padding: 20px 22px;
+      }
+    }
+
+    /* ---------- Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      body::before {
+        animation: none;
+      }
+
+      .card,
+      .btn,
+      .nav-pill a,
+      .theme-toggle {
+        transition: none;
+      }
+
+      .toast {
+        animation: none;
+      }
+
+      .btn:hover,
+      .nav-pill a:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating glass navigation pill -->
+  <nav class="nav-pill" aria-label="網站導覽">
+    <a href="#about">關於</a>
+    <a href="#skills">技能</a>
+    <a href="#portfolio">作品</a>
+    <a href="#experience">經歷</a>
+    <a href="#contact">聯絡</a>
+    <button class="theme-toggle" type="button" id="theme-toggle" aria-label="切換為深色模式" aria-pressed="false">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <path d="M21 12.79A8.5 8.5 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+      </svg>
+    </button>
+  </nav>
+
+  <main class="container">
+
+    <!-- HERO SECTION -->
+    <div class="card" id="about">
+      <!-- Sticker Star -->
+      <svg class="sticker sticker-star" viewBox="0 0 50 50" aria-hidden="true" focusable="false">
+        <polygon points="25,2 32,18 49,18 35,29 40,46 25,35 10,46 15,29 1,18 18,18"/>
+      </svg>
+
+      <span class="label-sm">ABOUT ME</span>
+      <div style="margin: 12px 0 0;">
+        <h1 class="hero-title">紀亮丞<br><span>Liang Cheng Chi</span></h1>
+      </div>
+      <p class="hero-quote">
+        「我很富有好奇心，不喜歡只透過單一角度思考事情。學習速度快，但有點沒耐心。」
+      </p>
+
+      <div class="tag-group" style="margin-top: 20px;">
+        <span class="tag tag-accent">開南大學 資訊管理學系（大五）</span>
+        <span class="tag tag-yellow">預計 2027 年畢業</span>
+      </div>
+    </div>
+
+    <!-- AVATAR / PHOTO SECTION -->
+    <div class="card" id="photo">
+      <span class="label-sm">PHOTO</span>
+      <div class="avatar-box">
+        <svg width="48" height="48" fill="none" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
+        </svg>
+        <span>大頭照待確認</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CAREER GOALS & SKILLS -->
+    <div class="grid-2">
+      <!-- 想找的工作 -->
+      <div class="card">
+        <span class="label-sm">CAREER GOALS</span>
+        <h2 class="section-title">想找的工作</h2>
+        <p style="margin-bottom: 12px;">期望投入軟體業與教育界，發揮跨領域優勢</p>
+
+        <div style="margin-bottom: 16px;">
+          <strong style="display: block; margin-bottom: 6px;">目標職缺：</strong>
+          <div class="tag-group">
+            <span class="tag tag-accent">前端開發實習生</span>
+            <span class="tag tag-accent">數位行銷助理</span>
+            <span class="tag tag-accent">國中小代理教師</span>
+          </div>
+        </div>
+
+        <div>
+          <strong style="display: block; margin-bottom: 6px;">偏好地點：</strong>
+          <p style="background-color: var(--glass-bg-soft); border: 1px solid var(--glass-border); border-radius: var(--radius-pill); padding: 8px 14px; display: inline-block;">桃園市、宜蘭市（接受遠端工作）</p>
+        </div>
+      </div>
+
+      <!-- 技能與能力 -->
+      <div class="card" id="skills">
+        <span class="label-sm">SKILLS</span>
+        <h2 class="section-title">專業技能與語言</h2>
+
+        <div style="margin-bottom: 12px;">
+          <strong>會用 (Proficient)</strong>
+          <div class="tag-group">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Git</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 12px;">
+          <strong>學過 (Learned)</strong>
+          <div class="tag-group">
+            <span class="tag tag-yellow">C++</span>
+            <span class="tag tag-yellow">Java</span>
+            <span class="tag tag-yellow">MySQL</span>
+          </div>
+        </div>
+
+        <div>
+          <strong>語言檢定</strong>
+          <div class="tag-group">
+            <span class="tag tag-accent">全民英檢中級</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- PORTFOLIO SECTION -->
+    <div class="card" id="portfolio">
+      <!-- Sticker Arrow -->
+      <svg class="sticker sticker-arrow" viewBox="0 0 50 50" aria-hidden="true" focusable="false">
+        <path d="M10 25 L35 25 M25 15 L35 25 L25 35"/>
+      </svg>
+
+      <span class="label-sm">PORTFOLIO</span>
+      <h2 class="section-title">作品與專題</h2>
+      <div class="grid-3" style="margin-top: 16px; margin-bottom: 0;">
+        <div class="panel">
+          <h3 class="item-title">作品 1</h3>
+          <span class="badge-pending">待確認</span>
+        </div>
+        <div class="panel">
+          <h3 class="item-title">作品 2</h3>
+          <span class="badge-pending">待確認</span>
+        </div>
+        <div class="panel">
+          <h3 class="item-title">作品 3</h3>
+          <span class="badge-pending">待確認</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- EXPERIENCE & TRAITS -->
+    <div class="grid-2" id="experience">
+      <!-- 經歷 -->
+      <div class="card">
+        <span class="label-sm">EXPERIENCE</span>
+        <h2 class="section-title">工作與打工經歷</h2>
+
+        <div class="panel" style="margin-top: 12px; padding: 16px;">
+          <div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: 8px;">
+            <h3 class="item-title" style="margin: 0;">補習班 — 國小數學輔導助教</h3>
+            <span class="tag tag-yellow">2025.06 – 2026.09</span>
+          </div>
+          <p style="margin-top: 12px;">
+            擔任國小數學輔導助教，解答學生疑問並批改作業。親自為學生編撰講義、整理精華筆記與分享猜題技巧，突破傳統解題限制，提升學習興趣。
+          </p>
+          <div class="panel panel-tint" style="margin-top: 12px; padding: 12px;">
+            <strong style="display: block;">關鍵成果：</strong>
+            <p>輔導過 3 位學生，成功協助其中一位學生將段考成績從 40 分大幅提升至 61 分（順利及格）。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 特質 & 興趣 -->
+      <div>
+        <div class="card">
+          <span class="label-sm">TRAITS</span>
+          <h2 class="section-title">個人特質</h2>
+          <span class="badge-pending">待確認</span>
+          <p style="margin-top: 8px; font-size: 0.875rem; color: var(--color-ink-muted);">（別人對你的評價與具體優點例子）</p>
+        </div>
+
+        <div class="card" style="margin-bottom: 0;">
+          <span class="label-sm">INTERESTS</span>
+          <h2 class="section-title">興趣與課外休閒</h2>
+          <p>喜歡透過多面向的娛樂激發思考與邏輯能力：</p>
+          <div class="tag-group" style="margin-top: 10px;">
+            <span class="tag tag-pink">📖 閱讀</span>
+            <span class="tag tag-pink">🃏 玩卡牌遊戲</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT - 聯絡我 -->
+    <div class="card card-inverted" id="contact">
+      <!-- Sticker Star -->
+      <svg class="sticker sticker-star" viewBox="0 0 50 50" aria-hidden="true" focusable="false">
+        <polygon points="25,2 32,18 49,18 35,29 40,46 25,35 10,46 15,29 1,18 18,18"/>
+      </svg>
+
+      <span class="label-sm">GET IN TOUCH</span>
+      <h2 class="section-title" style="margin-top: 8px;">聯絡我</h2>
+      <p style="font-size: 1.125rem;">歡迎透過以下方式與我聯繫：</p>
+
+      <div class="panel contact-list" style="margin-top: 16px;">
+        <p>Email：<span class="badge-pending">待確認</span></p>
+        <p>GitHub：<span class="badge-pending">待確認</span></p>
+        <p>LinkedIn：<span class="badge-pending">待確認</span></p>
+      </div>
+
+      <button class="btn" type="button" id="contact-btn">聯絡按鈕</button>
+    </div>
+
+  </main>
+
+  <!-- Toast components -->
+  <div class="toast-region" aria-label="通知">
+    <div class="toast" id="toast-info" data-variant="info" role="status" aria-live="polite" aria-atomic="true" hidden>
+      <span class="toast-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 11v5"/>
+          <path d="M12 8h.01"/>
+        </svg>
+      </span>
+      <div class="toast-body">
+        <p class="toast-title"></p>
+        <p class="toast-message"></p>
+      </div>
+      <button class="toast-close" type="button" aria-label="關閉通知">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="toast" id="toast-success" data-variant="success" role="status" aria-live="polite" aria-atomic="true" hidden>
+      <span class="toast-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M8 12.5l2.5 2.5L16 9.5"/>
+        </svg>
+      </span>
+      <div class="toast-body">
+        <p class="toast-title"></p>
+        <p class="toast-message"></p>
+      </div>
+      <button class="toast-close" type="button" aria-label="關閉通知">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById('theme-toggle');
+      var meta = document.querySelector('meta[name="theme-color"]');
+
+      var toasts = {
+        info: document.getElementById('toast-info'),
+        success: document.getElementById('toast-success')
+      };
+      var timers = new WeakMap();
+      var DURATION = 5000;
+
+      function hideToast(el) {
+        clearTimeout(timers.get(el));
+        el.hidden = true;
+      }
+
+      function showToast(kind, title, message) {
+        var el = toasts[kind] || toasts.info;
+        if (!el) return;
+        el.querySelector('.toast-title').textContent = title;
+        el.querySelector('.toast-message').textContent = message || '';
+        el.hidden = false;
+        clearTimeout(timers.get(el));
+        timers.set(el, setTimeout(function () { hideToast(el); }, DURATION));
+      }
+
+      // Exposed for future use: showToast('info' | 'success', title, message)
+      window.showToast = showToast;
+
+      function syncThemeUI() {
+        var dark = root.dataset.theme === 'dark';
+        toggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+        toggle.setAttribute('aria-label', dark ? '切換為淺色模式' : '切換為深色模式');
+        if (meta) {
+          var base = getComputedStyle(root).getPropertyValue('--bg-base').trim();
+          if (base) meta.setAttribute('content', base);
+        }
+      }
+
+      syncThemeUI();
+
+      toggle.addEventListener('click', function () {
+        var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        syncThemeUI();
+        showToast(
+          'success',
+          next === 'dark' ? '已切換為深色模式' : '已切換為淺色模式',
+          '外觀偏好已儲存在此瀏覽器。'
+        );
+      });
+
+      Object.keys(toasts).forEach(function (kind) {
+        var el = toasts[kind];
+        el.addEventListener('mouseenter', function () { clearTimeout(timers.get(el)); });
+        el.addEventListener('mouseleave', function () {
+          clearTimeout(timers.get(el));
+          timers.set(el, setTimeout(function () { hideToast(el); }, 3000));
+        });
+        el.addEventListener('focusin', function () { clearTimeout(timers.get(el)); });
+        el.addEventListener('focusout', function () {
+          clearTimeout(timers.get(el));
+          timers.set(el, setTimeout(function () { hideToast(el); }, 3000));
+        });
+        el.querySelector('.toast-close').addEventListener('click', function () { hideToast(el); });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          Object.keys(toasts).forEach(function (kind) { hideToast(toasts[kind]); });
+        }
+      });
+
+      var contact = document.getElementById('contact-btn');
+      if (contact) {
+        contact.addEventListener('click', function () {
+          showToast('info', '聯絡 Email 待確認中！', '目前尚未公開聯絡方式，補上後就能直接寄信。');
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
