@@ -136,7 +136,7 @@
 
     html {
       -webkit-text-size-adjust: 100%;
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
     }
 
     body {
@@ -1138,6 +1138,46 @@
         if (e.key === 'Escape') {
           Object.keys(toasts).forEach(function (kind) { hideToast(toasts[kind]); });
         }
+      });
+
+      // Eased navigation scrolling: moderate 600ms ease-in-out.
+      function easeInOutCubic(t) {
+        return t < 0.5
+          ? 4 * t * t * t
+          : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          var hash = link.getAttribute('href');
+          if (!hash || hash === '#') return;
+          var target = document.querySelector(hash);
+          if (!target) return;
+
+          e.preventDefault();
+
+          var start = window.pageYOffset || document.documentElement.scrollTop || 0;
+          var max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+          var end = Math.max(0, Math.min(target.getBoundingClientRect().top + start, max));
+          var distance = end - start;
+
+          if (Math.abs(distance) < 2) return;
+
+          var duration = 600;
+          var startedAt = performance.now();
+
+          function step(now) {
+            var t = Math.min((now - startedAt) / duration, 1);
+            window.scrollTo(0, start + distance * easeInOutCubic(t));
+            if (t < 1) {
+              requestAnimationFrame(step);
+            } else if (history.replaceState) {
+              history.replaceState(null, '', hash);
+            }
+          }
+
+          requestAnimationFrame(step);
+        });
       });
 
       var contact = document.getElementById('contact-btn');
