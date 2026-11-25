@@ -575,14 +575,14 @@
     /* ---------- Toasts ---------- */
     .toast-region {
       position: fixed;
-      left: 12px;
-      right: 12px;
-      bottom: max(12px, env(safe-area-inset-bottom));
+      inset: 0;
       z-index: 200;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 10px;
+      padding: 12px;
       pointer-events: none;
     }
 
@@ -604,7 +604,7 @@
         inset 0 -1px 0 var(--glass-lowlight);
       color: var(--color-ink);
       pointer-events: auto;
-      animation: drop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: drop-in 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .toast[hidden] {
@@ -690,15 +690,24 @@
     }
 
     @keyframes drop-in {
-      from {
+      0% {
         opacity: 0;
-        transform: translateY(-42px) scale(0.96);
+        transform: translateY(-90px) scale(0.85);
       }
-      60% {
+      50% {
         opacity: 1;
-        transform: translateY(4px) scale(1.01);
+        transform: translateY(18px) scale(1.10);
       }
-      to {
+      68% {
+        transform: translateY(-10px) scale(0.95);
+      }
+      82% {
+        transform: translateY(5px) scale(1.03);
+      }
+      92% {
+        transform: translateY(-2px) scale(0.99);
+      }
+      100% {
         opacity: 1;
         transform: translateY(0) scale(1);
       }
@@ -706,11 +715,8 @@
 
     @media (min-width: 768px) {
       .toast-region {
-        left: auto;
-        right: 16px;
-        bottom: 16px;
-        width: 380px;
-        align-items: flex-end;
+        align-items: center;
+        justify-content: center;
       }
 
       .toast {
@@ -801,10 +807,6 @@
       .nav-pill a,
       .theme-toggle {
         transition: none;
-      }
-
-      .toast {
-        animation: none;
       }
 
       .btn:hover,
